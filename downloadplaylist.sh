@@ -1,9 +1,11 @@
 #!/bin/bash
 
+curPath=`pwd`
+
 # check if --audio-only is present.
-audioOnly=false;
+audioOnly=0;
 case "$2" in
-(--audio-only) audioOnly=true;;
+(--audio-only) audioOnly=1;;
 esac
 ###################################
 
@@ -18,7 +20,7 @@ echo $title
 # If it's only audio, save into Music
 # Else, save into Videos.
 dlPath="";
-if [ audioOnly=true ]; then
+if [ $audioOnly -eq 1 ]; then
 	dlPath=~/Music/YoutubePlaylist/"$title"/;
 else
 	dlPath=~/Videos/YoutubePlaylist/"$title"/;
@@ -41,7 +43,7 @@ function handleVideo {
 # iterate through list.txt, downloading.
 while read line; do
 	echo "downloading" $line
-	if [ audioOnly=true ]; then
+	if [ $audioOnly -eq 1 ]; then
 		handleAudio $line
 	else
 		handleVideo $line
@@ -53,3 +55,12 @@ done <list.txt
 # remove list.txt
 list=$dlPath"list.txt";
 rm "$list"
+
+# rename the files, removing the youtube video ID from the name
+for f in ./*
+do
+	if [ "$f" != "./Favorites" ]; then
+		newName=`python "$curPath/rename.py" "$f"`
+		mv "$f" "$newName"
+	fi
+done
