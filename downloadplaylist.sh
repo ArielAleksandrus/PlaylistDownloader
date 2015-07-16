@@ -53,9 +53,3 @@ done <list.txt
 # remove list.txt
 list=$dlPath"list.txt";
 rm "$list"
-
-# rename the files, removing the youtube video ID from the name
-for f in "$dlPath"*
-do
-	mv "$f" "${f%-*}.mp3"
-done
