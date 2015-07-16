@@ -8,9 +8,9 @@ esac
 ###################################
 
 # download youtube's page
-#curl "$1" > youtubepage.html
+curl "$1" > youtubepage.html
 # playlistfinder.js: extract playlist's links into a file
-#nodejs playlistfinder.js
+nodejs playlistfinder.js
 title=$(head -n 1 title.txt)
 echo $title
 
