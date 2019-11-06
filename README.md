@@ -4,8 +4,14 @@ Software to download a whole playlist from youtube
 ### Requirements:
 - [python2.7](https://www.python.org/download/releases/2.7/): `sudo apt-get install python2.7`
 - [nodejs](https://nodejs.org/): `sudo apt-get install nodejs`
-- [youtube-dl](https://github.com/rg3/youtube-dl/): `sudo apt-get install youtube-dl`
-    - depends on "ffmepg" or "avprobe": `sudo apt-get install -y libav-tools`
+- [youtube-dl](https://github.com/rg3/youtube-dl/):
+```
+sudo wget https://yt-dl.org/downloads/latest/youtube-dl -O /usr/local/bin/youtube-dl
+sudo chmod a+rx /usr/local/bin/youtube-dl
+hash -r
+
+```
+- depends on "ffmepg" or "avprobe": `sudo apt-get install -y ffmpeg`
 - [cheerio](https://github.com/cheeriojs/cheerio) (already included)
 
 ### Usage:
